@@ -13,10 +13,12 @@ class Client {
 
     public function registration($login, $password)
     {
-        $data = json_encode(['login'=>$login,
-                            'password'=>$password],
-                        JSON_UNESCAPED_UNICODE);
+        $data = json_encode(['login' => $login,
+                             'password' => $password],
+                             JSON_UNESCAPED_UNICODE);
+        
         $request = curl_init();
+        
         $arr = array(CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $this->baseURL.'/user',
             CURLOPT_HTTPHEADER => array(
@@ -26,6 +28,7 @@ class Client {
             CURLOPT_POSTFIELDS => $data);
 
         curl_setopt_array($request, $arr);
+        
         try
         {
             $data = curl_exec($request);
@@ -39,11 +42,13 @@ class Client {
 
     }
 
-    public function create_todo($login, $todo) {
-        $data = json_encode(['login'=>$login,
-                             'todo'=>$todo],
-                       JSON_UNESCAPED_UNICODE);
+    public function create_todo($login, $todo) 
+    {
+        $data = json_encode(['login' => $login,
+                             'todo'  => $todo],
+                             JSON_UNESCAPED_UNICODE);
         $request = curl_init();
+        
         $arr = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $this->url.'/todo',
@@ -51,24 +56,29 @@ class Client {
                 'Content-type: application/json',
                 'Content-Length'.strlen($data)),
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $data
-        );
+            CURLOPT_POSTFIELDS => $data );
+        
         curl_setopt_array($request, $arr);
+        
         try
         {
             $data = curl_exec($request);
             $result = curl_getinfo($request, CURLINFO_RESPONSE_CODE);
         }
-        finally {
+        finally 
+        {
             curl_close($request);
         }
         return $result;
     }
 
-    public function get_todo($login) {
-        $data = json_encode(['login'=>$login],
-                        JSON_UNESCAPED_UNICODE);
+    public function get_todo($login) 
+    {    
+        $data = json_encode(['login' => $login],
+                             JSON_UNESCAPED_UNICODE);
+        
         $request = curl_init();
+        
         $arr = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $this->url.'/todo',
@@ -76,26 +86,31 @@ class Client {
                 'Content-type: application/json',
                 'Content-Length'.strlen($data)),
             CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_POSTFIELDS => $data
-        );
+            CURLOPT_POSTFIELDS => $data);
+        
         curl_setopt_array($request, $arr);
+        
         try
         {
             $data = curl_exec($request);
             $result = curl_getinfo($request, CURLINFO_RESPONSE_CODE);
         }
-        finally {
+        finally 
+        {
             curl_close($request);
         }
         return $result;
     }
 
-    public function put_todo($id, $login, $todo) {
-        $data = json_encode(['id'=>$id,
-                             'login'=>$login,
-                             'todo'=>$todo],
-                        JSON_UNESCAPED_UNICODE);
+    public function put_todo($id, $login, $todo) 
+    {
+        $data = json_encode(['id' => $id,
+                             'login' => $login,
+                             'todo' => $todo],
+                             JSON_UNESCAPED_UNICODE);
+        
         $request = curl_init();
+        
         $arr = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $this->url.'/todo'.$id,
@@ -103,26 +118,31 @@ class Client {
                 'Content-type: application/json',
                 'Content-Length'.strlen($data)),
             CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => $data
-        );
+            CURLOPT_POSTFIELDS => $data);
+        
         curl_setopt_array($request, $arr);
+        
         try
         {
             $data = curl_exec($request);
             $result = curl_getinfo($request, CURLINFO_RESPONSE_CODE);
         }
-        finally {
+        finally 
+        {
             curl_close($request);
         }
         return $result;
     }
 
-    public function delete_todo($id, $login, $todo) {
-        $data = json_encode(['id'=>$id,
-                             'login'=>$login,
-                             'todo'=>$todo],
-                        JSON_UNESCAPED_UNICODE);
+    public function delete_todo($id, $login, $todo) 
+    {
+         $data = json_encode(['id' => $id,
+                             'login' => $login,
+                             'todo' => $todo],
+                              JSON_UNESCAPED_UNICODE);
+        
         $request = curl_init();
+        
         $arr = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $this->url.'/todo'.$id,
@@ -130,15 +150,17 @@ class Client {
                 'Content-type: application/json',
                 'Content-Length'.strlen($data)),
             CURLOPT_CUSTOMREQUEST => 'DELETE',
-            CURLOPT_POSTFIELDS => $data
-        );
+            CURLOPT_POSTFIELDS => $data );
+        
         curl_setopt_array($request, $arr);
+        
         try
         {
             $data = curl_exec($request);
             $result = curl_getinfo($request, CURLINFO_RESPONSE_CODE);
         }
-        finally {
+        finally
+        {
             curl_close($request);
         }
         return $result;
