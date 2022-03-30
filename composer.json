@@ -1,0 +1,15 @@
+{
+    "name": "sophiakuznetsova/rest_client",
+    "autoload": {
+        "psr-4": {
+            "Sophiakuznetsova\\RestClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "goahead7",
+            "email": "sophia.kuznetsova.7@gmail.com"
+        }
+    ],
+    "require": {}
+}
