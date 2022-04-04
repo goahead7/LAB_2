@@ -1,11 +1,12 @@
 <?php
 
-require_once dirname(__DIR__).'/client/vendor/autoload.php';
+require_once dirname(__DIR__).'Rest_Client/vendor/autoload.php';
 
-use Client\Client;
+use App\Class\Client;
+use App\Class\User;
+use App\Class\ToDo;
 
-$user = new Client('http://127.0.0.1:8000');
-
-echo ($user->createUser("Sophia", "1111"));
+$client = new Client('http://127.0.0.1:8000');
+echo ($client->download_file('17(1).txt'));
 
 
